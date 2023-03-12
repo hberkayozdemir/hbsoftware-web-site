@@ -4,6 +4,7 @@ import styled from "styled-components";
 const Section = styled.div`
   display: flex;
   justify-content: center;
+  position: sticky;
 
   @media only screen and (max-width: 768px) {
     width: 100%;
@@ -29,13 +30,9 @@ const Links = styled.div`
   gap: 50px;
 `;
 
-const Logo = styled.img`
-  height: 50px;
-`;
-
 const List = styled.ul`
   display: flex;
-  gap: 20px;
+  gap: 60px;
   list-style: none;
   justify-content: end;
 
@@ -45,10 +42,12 @@ const List = styled.ul`
 `;
 
 const ListItem = styled.li`
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
 `;
 
-const HeroText = styled.text`
+const HeroText = styled.h2`
   font-size: 60px;
   color: #ccf382;
   font-weight: 600;
@@ -56,29 +55,37 @@ const HeroText = styled.text`
 `;
 
 const Button = styled.button`
-  width: 100px;
-  padding: 10px;
-  background-color: #ccf382;
-  color: white;
+  width: 150px;
+  padding: 20px;
+  background-color: #06eb4c;
+  color: black;
   border: none;
-  border-radius: 90px;
+  border-radius: 12px;
   cursor: pointer;
+`;
+const ButtonText = styled.h4`
+  font-weight: 600;
+  color: black;
+  font-size: large;
 `;
 
 const Navbar = () => {
   return (
     <Section>
       <Container>
+        {" "}
+        <HeroText>HBO</HeroText>
         <Links>
-          <HeroText>HBO</HeroText>
           <List>
             <ListItem>Home</ListItem>
             <ListItem>Studio</ListItem>
             <ListItem>Works</ListItem>
             <ListItem>Contact</ListItem>
-          </List>
+          </List>{" "}
+          <Button>
+            <ButtonText>Contact Us</ButtonText>
+          </Button>
         </Links>
-        <Button>Hire Now</Button>
       </Container>
     </Section>
   );

@@ -9,9 +9,10 @@ import {
   Stage,
 } from "@react-three/drei";
 import Atoms from "./Atoms";
+import SunnyPark from "./Earth";
 
 const Section = styled.div`
-  height: 100vh;
+  height: 90vh;
   scroll-snap-align: center;
   display: flex;
   flex-direction: column;
@@ -71,19 +72,15 @@ const Line = styled.img`
   height: 5px;
 `;
 
-const Subtitle = styled.h2`
-  color: #ccf382;
-`;
-
-const ButtonText = styled.text`
+const ButtonText = styled.h4`
   color: white;
   font-size: 20px;
   font-weight: 600;
 `;
 
 const Desc = styled.p`
-  font-size: 34px;
-  font-weight: 600;
+  font-size: 28px;
+  font-weight: 500;
   color: white;
   @media only screen and (max-width: 768px) {
     padding: 20px;
@@ -104,7 +101,7 @@ const Button = styled.button`
 `;
 
 const Right = styled.div`
-  flex: 3;
+  flex: 2;
   position: relative;
   @media only screen and (max-width: 768px) {
     flex: 1;
@@ -135,33 +132,48 @@ const Img = styled.img`
     }
   }
 `;
+const Divider = styled.div`
+  height: 1px;
+  background-color: gray;
+  width: 100%;
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+  }
+`;
 
 const Hero = () => {
   return (
     <Section>
       <Navbar />
+      <Divider></Divider>
       <Container>
         <Left>
-          <Title>Think. Make. Solve.</Title>
-
-          <Subtitle>What we Do</Subtitle>
+          <Title>We build business applications.</Title>
 
           <Desc>
-            We enjoy creating delightful, human-centered digital experiences.
+            We provide our clients with expert guidance and build software vital
+            to their organizations.
           </Desc>
-          <Button>
+          {/* <Button>
             <ButtonText>Learn More</ButtonText>
-          </Button>
+          </Button> */}
         </Left>
         <Right>
           <Canvas>
             <Suspense fallback={null}>
-              <OrbitControls enableZoom={false} />
-              <Stage environment={"city"} intensity={0.8}>
+              <OrbitControls
+                enableZoom={false}
+                autoRotate={true}
+                enableRotate={false}
+              />
+              <ambientLight></ambientLight>
+              <Stage
+                shadows="accumulative"
+                environment="apartment"
+                intensity={0.2}
+              >
                 <Atoms></Atoms>
               </Stage>
-              <ambientLight intensity={1} />
-              <directionalLight position={[3, 2, 1]} />
             </Suspense>
           </Canvas>
         </Right>

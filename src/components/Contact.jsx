@@ -1,7 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { Suspense, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import styled from "styled-components";
-import Map from "./Map";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Stage } from "@react-three/drei";
+import Earth from "./Earth";
+import Atoms from "./Atoms";
 
 const Section = styled.div`
   height: 100vh;
@@ -68,9 +71,10 @@ const Button = styled.button`
 
 const Right = styled.div`
   flex: 1;
-
+  position: relative;
   @media only screen and (max-width: 768px) {
-    display: none;
+    flex: 1;
+    width: 100%;
   }
 `;
 
@@ -113,7 +117,25 @@ const Contact = () => {
           </Form>
         </Left>
         <Right>
-          <Map />
+          <Canvas>
+            <Suspense fallback={null}>
+              <Stage
+                preset={"portrait"}
+                shadows="accumulative"
+                environment="night"
+                intensity={0.3}
+              >
+                <Earth />
+              </Stage>
+              <OrbitControls
+                enablePan={true}
+                enableDamping={false}
+                enableZoom={false}
+                autoRotate={true}
+                autoRotateSpeed={4}
+              />
+            </Suspense>
+          </Canvas>
         </Right>
       </Container>
     </Section>

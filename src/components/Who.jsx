@@ -1,6 +1,3 @@
-import { OrbitControls, Stage } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import React, { Suspense } from "react";
 import styled from "styled-components";
 import Dash from "./Dash";
 
@@ -9,6 +6,7 @@ const Section = styled.div`
   scroll-snap-align: center;
   display: flex;
   justify-content: center;
+  background-color: black;
 `;
 
 const Container = styled.div`
@@ -21,7 +19,7 @@ const Container = styled.div`
 
 const Left = styled.div`
   flex: 1;
-
+  display: flex;
   @media only screen and (max-width: 768px) {
     display: none;
   }
@@ -77,21 +75,21 @@ const Button = styled.button`
   border-radius: 90px;
   cursor: pointer;
 `;
+const Containers = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  flex: 1;
+`;
 
 const Who = () => {
   return (
     <Section>
       <Container>
         <Left>
-          <Canvas>
-            <Suspense fallback={null}>
-              <Stage environment="city" intensity={0.6}>
-                {/* <Dash /> */}
-                <Dash />
-              </Stage>
-              <OrbitControls enableZoom={false} autoRotate />
-            </Suspense>
-          </Canvas>
+          <Containers>
+            <Dash></Dash>
+          </Containers>
         </Left>
         <Right>
           <Title>Think outside the square space</Title>
